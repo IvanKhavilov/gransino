@@ -126,6 +126,7 @@
         height: 2px;
         border-radius: 2px;
         background-color: rgb(255, 178, 90);
+        filter: drop-shadow(0 0 3px rgb(255, 124, 61));
         position: absolute;
         width: 24px;
       }
@@ -152,6 +153,7 @@
         box-shadow: 0 10px 16px rgba(3, 4, 2, 0.25), 0 4px 4px rgba(3, 4, 2, 0.25), inset 0 2px 2px rgba(255, 255, 255, 0.25),
           inset 0 -2px 2px rgba(3, 4, 2, 0.5);
       }
+
       .menu-burger__label::after,
       .menu-burger__label::before,
       .menu-burger__label span {
@@ -191,6 +193,9 @@
         margin-right: 7px;
         fill: #fff;
       }
+      .logo {
+        transform: translateX(85px);
+      }
       .logo__img {
         z-index: 11;
       }
@@ -206,6 +211,7 @@
         border-radius: 28px;
         color: rgb(255, 178, 90);
         text-shadow: 0 0 14px rgb(255, 124, 61);
+        -webkit-text-stroke: 1px rgba(182, 59, 0, 0.4);
         border: none;
         text-transform: uppercase;
         background-image: linear-gradient(180deg, rgb(61, 63, 62) 0%, rgb(50, 50, 50) 100%);
@@ -258,6 +264,7 @@
         min-height: 80vh;
         display: flex;
         align-items: center;
+        overflow: hidden;
       }
       .main::after {
         content: '';
@@ -268,19 +275,44 @@
         height: 100%;
         background-color: rgba(0, 0, 0, 0.24);
       }
+      .main::before {
+        content: '';
+        position: absolute;
+        bottom: -10%;
+        right: 0;
+        width: 480px;
+        height: 520px;
+        background-image: url('images/dashboard-dealer.webp');
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
       .main__wrapp {
-        padding: 0 28px;
+        position: relative;
+        padding: 28px;
         max-width: 580px;
         text-align: center;
+        z-index: 2;
+        position: relative;
+      }
+      .main__wrapp::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         background-image: radial-gradient(
           50.54% 54.26% at 49.46% 50.01%,
           rgb(3, 4, 2) 38.73%,
           rgba(3, 4, 2, 0.25) 91.12%,
           rgba(3, 4, 2, 0) 100%
         );
+        filter: blur(25px);
+        z-index: -1;
       }
       .main__text {
         color: rgb(203, 102, 52);
+        -webkit-text-stroke: 1px rgba(182, 59, 0, 0.4);
         font-size: 60px;
         font-weight: 500;
         line-height: 90%;
@@ -439,12 +471,14 @@
         text-decoration: underline;
       }
       .footer__text {
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
         font-size: 12px;
         color: rgb(132, 146, 179);
-      }
-      .footer__text img {
-        margin: 20px 0 14px;
+        padding-top: 18px;
       }
       @media (max-width: 768px) {
         .popular {
@@ -485,7 +519,7 @@
           height: 1px;
         }
         .menu {
-          width: 100%;
+          width: 75%;
         }
         .menu__item svg {
           width: 20px;
@@ -498,11 +532,21 @@
           padding: 15px 26px 15px 26px;
         }
         .main {
-          padding: 325px 8px 30px;
+          padding: 270px 8px 8px;
           background-image: url('images/main-img-320.webp');
+          min-height: 480px;
         }
-        .main::after {
-          display: none;
+        .main::before {
+          content: '';
+          position: absolute;
+          right: 0;
+          width: 480px;
+          height: 550px;
+          bottom: -25%;
+          transform: translateX(11%);
+        }
+        .main__wrapp {
+          width: 100%;
         }
         .main__text {
           font-size: 36px;
@@ -590,7 +634,7 @@
             </li>
             <li class="menu__item">
               <svg class="menu__item-icon" fill="white" width="32" height="32">
-                <use xlink:href="images/sprite.svg#tournaments" width="32" height="32"></use>
+                <use xlink:href="images/sprite.svg#tournaments"></use>
               </svg>
               <a class="menu__link" href="go">Tournaments</a>
             </li>
